@@ -2,15 +2,31 @@ package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsultaGPT;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.*;
 import jdk.jfr.Category;
 
 import javax.swing.*;
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name = "series")
 public class Serie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true)
     private String titulo;
+
+    @Column(name = "totalSeasons")
     private Integer totalTemporadas;
+
+    @Column
     private Double avaliacao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "genre")
     private Categoria genero;
     private String atores;
     private String poster;
@@ -80,6 +96,14 @@ public class Serie {
 
     public void setSinopse(String sinopse) {
         this.sinopse = sinopse;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

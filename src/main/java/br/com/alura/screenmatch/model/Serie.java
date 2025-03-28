@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jdk.jfr.Category;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalDouble;
 
 @Entity
@@ -31,6 +33,17 @@ public class Serie {
     private String atores;
     private String poster;
     private String sinopse;
+
+    @Transient
+    private List<Episodio> episodios = new ArrayList<>();
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
 
     public Serie (DadosSerie dadosSerie){
         this.titulo = dadosSerie.titulo();

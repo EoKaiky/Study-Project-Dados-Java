@@ -1,11 +1,8 @@
 package br.com.alura.screenmatch.model;
 
-import br.com.alura.screenmatch.service.ConsultaGPT;
-import com.fasterxml.jackson.annotation.JsonAlias;
+import br.com.alura.screenmatch.service.ConsultaGemini;
 import jakarta.persistence.*;
-import jdk.jfr.Category;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -34,7 +31,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @Transient
+    @OneToMany(mappedBy = "serie")
     private List<Episodio> episodios = new ArrayList<>();
 
     public List<Episodio> getEpisodios() {
@@ -54,7 +51,7 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0]);
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = ConsultaGPT.obterTraducao(dadosSerie.sinopse()).trim();
+        this.sinopse = ConsultaGemini.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
     public String getTitulo() {

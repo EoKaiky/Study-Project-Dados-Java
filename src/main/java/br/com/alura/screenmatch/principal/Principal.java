@@ -9,6 +9,7 @@ import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Savepoint;
 import java.util.*;
 import java.util.stream.Collectors;
 

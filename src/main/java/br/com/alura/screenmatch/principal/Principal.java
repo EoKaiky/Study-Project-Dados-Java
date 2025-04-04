@@ -59,6 +59,9 @@ public class Principal {
                 case 4:
                     buscarSeriePorTitulo();
                     break;
+                case 5:
+                    buscarSeriesPorAtor();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -128,6 +131,13 @@ public class Principal {
             System.out.println("Série não encontrada!");
         }
 
+    }
+
+    private void buscarSeriesPorAtor() {
+        System.out.println("Qual o nome para busca: ");
+        var nomeAtor = leitura.nextLine();
+        List<Serie> seriesEncontradas = repository.findByAtoresContainingIgnoreCase(nomeAtor);
+        System.out.println(seriesEncontradas);
     }
 
     private void listarSeriesBuscadas(){

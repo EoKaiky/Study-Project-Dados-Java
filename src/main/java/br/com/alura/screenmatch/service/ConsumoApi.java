@@ -9,11 +9,15 @@ import java.net.http.HttpResponse;
 public class ConsumoApi {
 
     public String obterDados(String endereco) {
+
+        //consumo padrao de API
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endereco))
                 .build();
         HttpResponse<String> response = null;
+        
+        //tratamento de erro no consumo da API
         try {
             response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());

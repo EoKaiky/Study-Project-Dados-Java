@@ -75,6 +75,7 @@ public class Principal {
         }
     }
 
+    //metodo que capta nome digitado por usuario e busca no postgress o nome digitado
     private void buscarSeriePorTitulo() {
         System.out.println("Escolha uma série pelo nome: ");
         var nomeSerie = leitura.nextLine();
@@ -87,6 +88,7 @@ public class Principal {
         }
     }
 
+    //metodo que salva serie buscada pelo usuario no banco de dados
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
         Serie serie = new Serie(dados);
@@ -95,6 +97,7 @@ public class Principal {
         System.out.println(dados);
     }
 
+    //metodo que capta o nome digitado pelo usuario e faz requisicao na API buscano a serie escolhida pelo usuario
     private DadosSerie getDadosSerie() {
         System.out.println("Digite o nome da série para busca");
         var nomeSerie = leitura.nextLine();
@@ -103,6 +106,7 @@ public class Principal {
         return dados;
     }
 
+    
     private void buscarEpisodioPorSerie(){
         listarSeriesBuscadas();
         System.out.println("Escolha uma série pelo nome: ");

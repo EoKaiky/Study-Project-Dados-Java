@@ -182,6 +182,7 @@ public class Principal {
                 .forEach(System.out::println);
     }
 
+    //Método que busca todas as séries do genero digitado
     public void buscarSeriePorGenero(){
         System.out.println("Deseja buscar séries de qual gênero ?");
         var nomeGenero = leitura.nextLine();
@@ -191,6 +192,7 @@ public class Principal {
         seriesPorCategoria.forEach(System.out::println);
     }
 
+    //Filtrar série por quantidade de temporada
     private void filtrarSerieTemporada() {
         System.out.println("Filtrar séries até quantas temporadas ?");
         var totalTemporadas = leitura.nextInt();
@@ -198,6 +200,7 @@ public class Principal {
         serieTemporada.forEach(System.out::println);
     }
 
+    //Buscar série por filtro de avaliação
     private void filtrarSerieAvaliacao() {
         System.out.println("Você quer ver séries a partir de qual avaliação ?");
         var numAvaliacao = leitura.nextDouble();
@@ -205,11 +208,14 @@ public class Principal {
         serieAvaliacao.forEach(System.out::println);
     }
 
+    //Método que busca episódio quando digitado apenas uma palavra do nome do mesmo
     private void buscarEpisodioTrecho(){
         System.out.println("Qual nome para busca ?");
         var nameEpisodio = leitura.nextLine();
         List<Episodio> episodiosEncontrado = repository.episodiosPorTrecho(nameEpisodio);
-        episodiosEncontrado.forEach(System.out::println);
+        episodiosEncontrado.forEach(e -> System.out.printf("Série: %s Temporada %s - Episódio %s - %s\n",
+                e.getSerie().getTitulo(), e.getTemporada(),
+                e.getNumeroEpisodio(), e.getTitulo()));
     }
 
 }

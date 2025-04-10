@@ -1,6 +1,7 @@
 package br.com.alura.screenmatch.repository;
 
 import br.com.alura.screenmatch.model.Categoria;
+import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +23,7 @@ public interface SerieRepository extends JpaRepository <Serie, Long> {
     List<Serie> seriesTemporada(int totalTemporadas);
 
     List<Serie> findByAvaliacao(Double numAvaliacao);
+
+    @Query("SELECT e from Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:nameEpisodio")
+    List<Episodio> episodiosPorTrecho(String nameEpisodio);
 }

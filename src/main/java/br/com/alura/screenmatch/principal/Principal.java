@@ -39,6 +39,7 @@ public class Principal {
                     7 - Buscar série por categoria
                     8 - Filtrar séries por numero de temporada
                     9 - Filtrar séries por avaliação
+                    10 - Buscar episódio por trecho
                     
                     0 - Sair                                 
                     """;
@@ -74,6 +75,9 @@ public class Principal {
                     break;
                 case 9:
                     filtrarSerieAvaliacao();
+                    break;
+                case 10:
+                    buscarEpisodioTrecho();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -199,6 +203,13 @@ public class Principal {
         var numAvaliacao = leitura.nextDouble();
         List<Serie> serieAvaliacao = repository.findByAvaliacao(numAvaliacao);
         serieAvaliacao.forEach(System.out::println);
+    }
+
+    private void buscarEpisodioTrecho(){
+        System.out.println("Qual nome para busca ?");
+        var nameEpisodio = leitura.nextLine();
+        List<Episodio> episodiosEncontrado = repository.episodiosPorTrecho(nameEpisodio);
+        episodiosEncontrado.forEach(System.out::println);
     }
 
 }

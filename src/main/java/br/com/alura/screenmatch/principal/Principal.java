@@ -185,7 +185,7 @@ public class Principal {
     private void filtrarSerieTemporadaAvaliacao() {
         System.out.println("Filtrar séries até quantas temporadas ?");
         var totalTemporadas = leitura.nextInt();
-        List<Serie> serieTemporada = repository.findByTotalTemporadas(totalTemporadas);
+        List<Serie> serieTemporada = repository.seriesTemporadaAvaliacao(totalTemporadas);
         serieTemporada.forEach(System.out::println);
     }
 

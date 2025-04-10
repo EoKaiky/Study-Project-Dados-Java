@@ -24,6 +24,6 @@ public interface SerieRepository extends JpaRepository <Serie, Long> {
 
     List<Serie> findByAvaliacao(Double numAvaliacao);
 
-    @Query("SELECT e from Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:nameEpisodio")
+    @Query("SELECT e from Serie s JOIN s.episodios e WHERE e.titulo LIKE %:nameEpisodio%")
     List<Episodio> episodiosPorTrecho(String nameEpisodio);
 }

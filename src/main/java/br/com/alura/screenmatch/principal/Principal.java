@@ -36,6 +36,8 @@ public class Principal {
                     4 - Buscar serie por titulo
                     5 - Buscar serie por ator
                     6 - Listar top 5 Séries
+                    7 - Buscar série por categoria
+                    8 - Filtrar séries
                     
                     0 - Sair                                 
                     """;
@@ -66,6 +68,9 @@ public class Principal {
                 case 7:
                     buscarSeriePorGenero();
                     break;
+                case 8:
+                    filtrarSerieTemporadaAvaliacao();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -74,6 +79,7 @@ public class Principal {
             }
         }
     }
+
 
     //metodo que capta nome digitado por usuario e busca no postgress o nome digitado
     private void buscarSeriePorTitulo() {
@@ -175,4 +181,12 @@ public class Principal {
         System.out.println("Séries da categoria " +nomeGenero );
         seriesPorCategoria.forEach(System.out::println);
     }
+
+    private void filtrarSerieTemporadaAvaliacao() {
+        System.out.println("Filtrar séries até quantas temporadas ?");
+        var totalTemporadas = leitura.nextInt();
+        List<Serie> serieTemporada = repository.findByTotalTemporadas(totalTemporadas);
+        serieTemporada.forEach(System.out::println);
+    }
+
 }

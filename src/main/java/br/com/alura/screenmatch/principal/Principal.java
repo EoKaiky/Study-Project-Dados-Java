@@ -37,7 +37,8 @@ public class Principal {
                     5 - Buscar serie por ator
                     6 - Listar top 5 Séries
                     7 - Buscar série por categoria
-                    8 - Filtrar séries
+                    8 - Filtrar séries por numero de temporada
+                    9 - Filtrar séries por avaliação
                     
                     0 - Sair                                 
                     """;
@@ -69,7 +70,10 @@ public class Principal {
                     buscarSeriePorGenero();
                     break;
                 case 8:
-                    filtrarSerieTemporadaAvaliacao();
+                    filtrarSerieTemporada();
+                    break;
+                case 9:
+                    filtrarSerieAvaliacao();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -84,6 +88,7 @@ public class Principal {
     //metodo que capta nome digitado por usuario e busca no postgress o nome digitado
     private void buscarSeriePorTitulo() {
         System.out.println("Escolha uma série pelo nome: ");
+        System.out.println("Fudeo irmão!!!");
         var nomeSerie = leitura.nextLine();
         Optional<Serie> serieBuscada = repository.findByTituloContainingIgnoreCase(nomeSerie);
 
@@ -182,11 +187,18 @@ public class Principal {
         seriesPorCategoria.forEach(System.out::println);
     }
 
-    private void filtrarSerieTemporadaAvaliacao() {
+    private void filtrarSerieTemporada() {
         System.out.println("Filtrar séries até quantas temporadas ?");
         var totalTemporadas = leitura.nextInt();
-        List<Serie> serieTemporada = repository.seriesTemporadaAvaliacao(totalTemporadas);
+        List<Serie> serieTemporada = repository.seriesTemporada(totalTemporadas);
         serieTemporada.forEach(System.out::println);
+    }
+
+    private void filtrarSerieAvaliacao() {
+        System.out.println("Você quer ver séries a partir de qual avaliação ?");
+        var numAvaliacao = leitura.nextDouble();
+        List<Serie> serieAvaliacao = repository.findByAvaliacao(numAvaliacao);
+        serieAvaliacao.forEach(System.out::println);
     }
 
 }
